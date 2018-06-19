@@ -1,0 +1,52 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: master-server
+    run_list:
+      - recipe[dns_server]
+    attributes:
+      {
+      dns: {
+        domain: "gojek.com"
+        },
+        reverse: {
+          dns: "192"
+          },
+      primary_nameserver_ip: '8.8.8.8',
+      master_nameserver_ip: '10.0.2.15'
+      }
+    driver_config:
+      box: ubuntu/xenial64
+  # - name: secondary-name-server
+  #   run_list:
+  #     - recipe[dns_server::secondary_nameserver]
+  #   attributes:
+  #     {
+  #     dns: {
+  #       domain: "gojek.com"
+  #       },
+  #       reverse: {
+  #         dns: "192"
+  #         },
+  #     master_nameserver_ip: '192.168.33.33',
+  #     secondary_nameserver_ip: '192.168.33.32'
+  #     }
+  #   driver_config:
+  #     box: ubuntu/xenial64
+  #     network:
+  #       - ['private_network', {ip: '192.168.33.32'}]
+
+suites:
+  - name: default
+    run_list: []
+    verifier:
+      inspec_tests:
+        - test/integration/default

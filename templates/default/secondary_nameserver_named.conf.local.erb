@@ -1,0 +1,11 @@
+zone "<%=@dns_domain%>" {
+type slave;
+file "db.<%=@dns_domain%>";
+masters { <%=@master_nameserver_ip%>; }; 
+};
+
+zone "<%=@reverse_dns%>.in-addr.arpa" {
+type slave;
+file "db.<%=@reverse_dns%>";
+masters { <%=@master_nameserver_ip%>; }; 
+};

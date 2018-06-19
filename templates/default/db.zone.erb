@@ -1,0 +1,17 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL  60 ; 60 seconds
+@       IN     SOA      <%=@dns_domain%>.     root.<%=@dns_domain%>. (
+                              2                   ; Serial
+                         604800                   ; Refresh
+                          86400                   ; Retry
+                        2419200                   ; Expire
+                         604800 )                 ; Negative Cache TTL
+        IN      A       <%=node['ipaddress']%>
+;
+@       IN      NS      ns.<%=@dns_domain%>.
+@       IN      A       <%=node['ipaddress']%>
+@       IN      AAAA    ::1
+ns      IN      A       <%=node['ipaddress']%>
+dns     IN      A       <%=node['ipaddress']%>

@@ -1,0 +1,13 @@
+zone "<%=@dns_domain%>" {
+type master;
+file "db.<%=@dns_domain%>";
+allow-transfer { any;};
+allow-update {any;};
+};
+
+zone "<%=@reverse_dns%>.in-addr.arpa" in {
+type master;
+file "db.<%=@reverse_dns%>";
+allow-transfer { any; };
+allow-update {any;};
+};
