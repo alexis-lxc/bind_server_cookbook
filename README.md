@@ -1,4 +1,4 @@
-# dns_server Cookbook
+# bind_server Cookbook
 
 This cookbook is used to create dns server and a slave or secondary nameserver
 
